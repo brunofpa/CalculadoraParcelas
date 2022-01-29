@@ -1,6 +1,0 @@
-﻿
-# USE THIS WORKAROUND PROJECT TO MAKE THE TITLE BAR HAVE A BEHAVIOR SIMILAR TO UWP WHILE WINUI 3 WON'T RELEASE A FIX
-
-- Add the following line in the ResourcesDictionary.MergedDictionaries in your App.xaml:
-
-	<ResourceDictionary Source="ms-appx:///TitleBarWorkarounds/Styles/TitlebarWorkarounds.xaml" />

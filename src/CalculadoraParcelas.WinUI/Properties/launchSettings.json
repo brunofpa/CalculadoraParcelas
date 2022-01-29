@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "CalculadoraParcelas.WinUI": {
+      "commandName": "MsixPackage"
+    }
+  }
+}

@@ -1,23 +1,17 @@
-﻿<Page
-    x:Class="CalculadoraParcelas.UWP.MainPage"
+﻿<Window
+    x:Class="CalculadoraParcelas.WinUI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:CalculadoraParcelas.UWP"
+    xmlns:local="using:CalculadoraParcelas.WinUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="using:CalculadoraParcelas.Windows.Core.ViewModels"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
-    <Page.DataContext>
-        <viewmodels:CalculatorViewModel x:Name="Vm" />
-    </Page.DataContext>
 
-    <Grid>
-        <Grid
-            x:Name="AppTitleBar"
-            Height="32"
-            VerticalAlignment="Top" />
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.DataContext>
+            <viewmodels:CalculatorViewModel x:Name="Vm" />
+        </Grid.DataContext>
 
         <Grid Margin="50">
             <TextBlock
@@ -30,19 +24,19 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Margin="0,40" Orientation="Horizontal">
                     <StackPanel.Resources>
-                        <Style TargetType="winui:NumberBox">
+                        <Style TargetType="NumberBox">
                             <Setter Property="Width" Value="250" />
                             <Setter Property="SpinButtonPlacementMode" Value="Inline" />
                             <Setter Property="Minimum" Value="1" />
                         </Style>
                     </StackPanel.Resources>
 
-                    <winui:NumberBox
+                    <NumberBox
                         x:Name="ValueBox"
                         Margin="0,0,40,0"
                         Header="Valor:"
                         Value="{x:Bind Vm.Value, Mode=TwoWay}" />
-                    <winui:NumberBox Header="Quantidade de parcelas:" Value="{x:Bind Vm.ParcelaCount, Mode=TwoWay}" />
+                    <NumberBox Header="Quantidade de parcelas:" Value="{x:Bind Vm.ParcelaCount, Mode=TwoWay}" />
 
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -74,5 +68,6 @@
                 FontSize="50"
                 Text="{x:Bind Vm.Result, Mode=OneWay}" />
         </Grid>
+
     </Grid>
-</Page>
+</Window>

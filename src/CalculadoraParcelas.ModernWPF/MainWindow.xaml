@@ -3,28 +3,31 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
     xmlns:local="clr-namespace:CalculadoraParcelasModernWpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.modernwpf.com/2019"
-    xmlns:viewmodels="clr-namespace:CalculadoraParcelas.Windows.Core.ViewModels;assembly=CalculadoraParcelas.Windows.Core"
+    xmlns:viewmodels="clr-namespace:CalculadoraParcelas.Windows.Core.ViewModels;assembly=CalculadoraParcelas.Core"
     Title="Calculadora de Parcelas"
     Width="1167"
     Height="642"
     d:Background="#1F1F1F"
     d:DataContext="{d:DesignInstance Type=viewmodels:CalculatorViewModel}"
     ui:ThemeManager.RequestedTheme="Dark"
-    ui:TitleBar.ExtendViewIntoTitleBar="True"
-    ui:WindowHelper.UseModernWindowStyle="True"
-    Background="#121212"
+    Background="Transparent"
+    Foreground="{DynamicResource SystemControlPageTextBaseHighBrush}"
+    Loaded="Window_Loaded"
     mc:Ignorable="d">
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="20"
+            CornerRadius="0"
+            GlassFrameThickness="-1"
+            ResizeBorderThickness="8"
+            UseAeroCaptionButtons="True" />
+    </WindowChrome.WindowChrome>
     <Window.DataContext>
         <viewmodels:CalculatorViewModel x:Name="Vm" />
     </Window.DataContext>
-    <Window.Resources>
-        <SolidColorBrush x:Key="WindowBorder" Color="#1C1B1D" />
-        <SolidColorBrush x:Key="WindowBorderInactive" Color="#393939" />
-    </Window.Resources>
     <Grid Margin="50">
         <TextBlock
             HorizontalAlignment="Center"

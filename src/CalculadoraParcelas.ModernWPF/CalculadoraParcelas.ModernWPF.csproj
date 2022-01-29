@@ -2,12 +2,15 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
     <UseWPF>true</UseWPF>
+	<Platforms>AnyCPU;x64;x86</Platforms>
+	<Version>1.2.0</Version>
+	<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+	<ImplicitUsings>true</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentWPF" Version="0.9.0" />
     <PackageReference Include="ModernWpfUI" Version="0.9.4" />
   </ItemGroup>
 
@@ -20,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CalculadoraParcelas.Windows.Core\CalculadoraParcelas.Windows.Core.csproj" />
+    <ProjectReference Include="..\CalculadoraParcelas.Windows.Core\CalculadoraParcelas.Core.csproj" />
   </ItemGroup>
 
 </Project>

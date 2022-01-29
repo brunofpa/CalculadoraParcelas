@@ -32,6 +32,9 @@ namespace CalculadoraParcelas.Windows.Core.ViewModels
 
         public CalculatorViewModel()
         {
+            Value = 1;
+            ParcelaCount = 1;
+
             CalcularCommand = new RelayCommand(Calcular);
             ApagarCommand = new RelayCommand(Apagar);
         }
