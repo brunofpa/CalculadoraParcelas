@@ -1,5 +1,5 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
 
 namespace CalculadoraParcelas.Windows.Core.ViewModels
@@ -27,16 +27,16 @@ namespace CalculadoraParcelas.Windows.Core.ViewModels
             set => SetProperty(ref _result, value);
         }
 
-        public ICommand CalcularCommand { get; }
-        public ICommand ApagarCommand { get; }
+        public ICommand CalculateCommand { get; }
+        public ICommand EraseCommand { get; }
 
         public CalculatorViewModel()
         {
             Value = 1;
             ParcelaCount = 1;
 
-            CalcularCommand = new RelayCommand(Calcular);
-            ApagarCommand = new RelayCommand(Apagar);
+            CalculateCommand = new RelayCommand(Calcular);
+            EraseCommand = new RelayCommand(Apagar);
         }
 
         private void Apagar()

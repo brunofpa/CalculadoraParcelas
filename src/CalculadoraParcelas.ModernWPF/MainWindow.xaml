@@ -11,7 +11,8 @@
     Width="1167"
     Height="642"
     d:Background="#1F1F1F"
-    d:DataContext="{d:DesignInstance Type=viewmodels:CalculatorViewModel}"
+    d:DataContext="{d:DesignInstance viewmodels:CalculatorViewModel,
+                                     IsDesignTimeCreatable=True}"
     ui:ThemeManager.RequestedTheme="Dark"
     Background="Transparent"
     Foreground="{DynamicResource SystemControlPageTextBaseHighBrush}"
@@ -58,7 +59,7 @@
                 <Button
                     Margin="0,0,10,0"
                     Background="{StaticResource SystemControlForegroundAccentBrush}"
-                    Command="{Binding CalcularCommand}">
+                    Command="{Binding CalculateCommand}">
                     <StackPanel Orientation="Horizontal">
                         <ui:SymbolIcon Margin="0,0,5,0" Symbol="Calculator" />
                         <TextBlock>Calcular</TextBlock>
@@ -67,7 +68,7 @@
                 <Button
                     x:Name="button"
                     Background="DarkRed"
-                    Command="{Binding ApagarCommand}">
+                    Command="{Binding EraseCommand}">
                     <StackPanel Orientation="Horizontal">
                         <ui:SymbolIcon Margin="0,0,5,0" Symbol="Delete" />
                         <TextBlock>Apagar</TextBlock>

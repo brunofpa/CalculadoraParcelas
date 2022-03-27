@@ -7,20 +7,20 @@ using System.Windows.Media;
 
 namespace CalculadoraParcelasModernWpf
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         [Flags]
         public enum DwmWindowAttribute : uint
         {
             DWMWA_USE_IMMERSIVE_DARK_MODE = 20,
-            DWMWA_MICA_EFFECT = 1029
+            DWMWA_SYSTEMBACKDROP_TYPE = 38
         }
 
         [DllImport("dwmapi.dll")]
         private static extern int DwmSetWindowAttribute(IntPtr hwnd, DwmWindowAttribute dwAttribute, ref int pvAttribute, int cbAttribute);
+
+        public static int SetWindowAttribute(IntPtr hwnd, DwmWindowAttribute attribute, int parameter)
+            => DwmSetWindowAttribute(hwnd, attribute, ref parameter, Marshal.SizeOf<int>());
 
         public MainWindow()
         {
@@ -33,9 +33,7 @@ namespace CalculadoraParcelasModernWpf
                 return;
 
             var hWnd = (HwndSource)sender;
-            // Apply Mica brush
             UpdateStyleAttributes(hWnd);
-
 
             ThemeManager.Current.ActualApplicationThemeChanged += (s, e) =>
             {
@@ -52,15 +50,8 @@ namespace CalculadoraParcelasModernWpf
         {
             var isDarkTheme = ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Dark;
 
-            int trueValue = 0x01;
-            int falseValue = 0x00;
-
-            if (isDarkTheme)
-                _ = DwmSetWindowAttribute(hWnd.Handle, DwmWindowAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, ref trueValue, Marshal.SizeOf(typeof(int)));
-            else
-                _ = DwmSetWindowAttribute(hWnd.Handle, DwmWindowAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, ref falseValue, Marshal.SizeOf(typeof(int)));
-
-            _ = DwmSetWindowAttribute(hWnd.Handle, DwmWindowAttribute.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
+            _ = SetWindowAttribute(hWnd.Handle, DwmWindowAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, isDarkTheme ? 1 : 0);
+            _ = SetWindowAttribute(hWnd.Handle, DwmWindowAttribute.DWMWA_SYSTEMBACKDROP_TYPE, 2);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

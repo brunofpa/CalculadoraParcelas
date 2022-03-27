@@ -43,7 +43,7 @@
                     <Button
                         Margin="0,0,10,0"
                         Background="{ThemeResource SystemControlForegroundAccentBrush}"
-                        Command="{x:Bind Vm.CalcularCommand}">
+                        Command="{x:Bind Vm.CalculateCommand}">
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Margin="0,0,5,0" Symbol="Calculator" />
                             <TextBlock>Calcular</TextBlock>
@@ -52,7 +52,7 @@
                     <Button
                         x:Name="button"
                         Background="DarkRed"
-                        Command="{x:Bind Vm.ApagarCommand}">
+                        Command="{x:Bind Vm.EraseCommand}">
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Margin="0,0,5,0" Symbol="Delete" />
                             <TextBlock>Apagar</TextBlock>
