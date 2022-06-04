@@ -1,7 +1,8 @@
 {
   "profiles": {
     "CalculadoraParcelas.WinUI": {
-      "commandName": "MsixPackage"
+      "commandName": "MsixPackage",
+      "nativeDebugging": false
     }
   }
 }

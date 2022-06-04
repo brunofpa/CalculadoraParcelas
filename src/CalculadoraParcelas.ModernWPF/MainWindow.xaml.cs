@@ -9,6 +9,11 @@ namespace CalculadoraParcelasModernWpf
 {
     public partial class MainWindow : Window
     {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
         [Flags]
         public enum DwmWindowAttribute : uint
         {
@@ -22,27 +27,16 @@ namespace CalculadoraParcelasModernWpf
         public static int SetWindowAttribute(IntPtr hwnd, DwmWindowAttribute attribute, int parameter)
             => DwmSetWindowAttribute(hwnd, attribute, ref parameter, Marshal.SizeOf<int>());
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
+        [SupportedOSPlatform("windows10.0.18362.0")]
         private void MainWindow_ContentRendered(object sender, EventArgs e)
         {
-            if (!OperatingSystem.IsWindowsVersionAtLeast(10, 0, 18362, 0))
-                return;
-
             var hWnd = (HwndSource)sender;
             UpdateStyleAttributes(hWnd);
 
             ThemeManager.Current.ActualApplicationThemeChanged += (s, e) =>
             {
-                if (!OperatingSystem.IsWindowsVersionAtLeast(10, 0, 18362, 0))
-                    return;
-
                 UpdateStyleAttributes(hWnd);
             };
-            
         }
 
         [SupportedOSPlatform("windows10.0.18362.0")]
@@ -60,7 +54,6 @@ namespace CalculadoraParcelasModernWpf
                 return;
 
             var presentationSource = PresentationSource.FromVisual(sender as Visual);
-
             presentationSource.ContentRendered += MainWindow_ContentRendered;
         }
     }

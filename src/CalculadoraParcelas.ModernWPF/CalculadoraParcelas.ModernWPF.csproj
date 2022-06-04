@@ -8,11 +8,17 @@
 	<Version>1.2.0</Version>
 	<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
 	<ImplicitUsings>enable</ImplicitUsings>
+	<!--<IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.1.691-beta">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="ModernWpfUI" Version="0.9.5" />
   </ItemGroup>
+
+    
 
   <ItemGroup>
     <None Include="Properties\DesignTimeResources.xaml">
