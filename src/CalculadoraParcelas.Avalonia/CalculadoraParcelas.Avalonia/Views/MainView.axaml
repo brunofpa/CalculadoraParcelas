@@ -1,34 +1,23 @@
-﻿<Window
-    x:Class="CalculadoraParcelasModernWpf.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<UserControl
+    x:Class="CalculadoraParcelas.Views.MainView"
+    xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:CalculadoraParcelasModernWpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:viewmodels="clr-namespace:CalculadoraParcelas.Windows.Core.ViewModels;assembly=CalculadoraParcelas.Core"
-    Title="Calculadora de Parcelas"
-    Width="1167"
-    Height="642"
-    d:Background="#1F1F1F"
-    d:DataContext="{d:DesignInstance viewmodels:CalculatorViewModel,
-                                     IsDesignTimeCreatable=True}"
-    ui:ThemeManager.RequestedTheme="Dark"
+    xmlns:winui="using:FluentAvalonia.UI.Controls"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
     Background="Transparent"
-    Foreground="{DynamicResource SystemControlPageTextBaseHighBrush}"
-    Loaded="Window_Loaded"
+    Foreground="White"
     mc:Ignorable="d">
-    <WindowChrome.WindowChrome>
-        <WindowChrome
-            CaptionHeight="0"
-            CornerRadius="0"
-            GlassFrameThickness="-1"
-            ResizeBorderThickness="0"
-            UseAeroCaptionButtons="True" />
-    </WindowChrome.WindowChrome>
-    <Window.DataContext>
-        <viewmodels:CalculatorViewModel x:Name="Vm" />
-    </Window.DataContext>
+    <Design.DataContext>
+        <viewmodels:CalculatorViewModel />
+    </Design.DataContext>
+    <UserControl.DataContext>
+        <viewmodels:CalculatorViewModel />
+    </UserControl.DataContext>
+
     <Grid Margin="50">
         <TextBlock
             HorizontalAlignment="Center"
@@ -39,29 +28,38 @@
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Margin="0,40" Orientation="Horizontal">
-                <StackPanel.Resources>
-                    <Style TargetType="ui:NumberBox">
+                <StackPanel.Styles>
+                    <Style Selector="winui|NumberBox">
                         <Setter Property="Width" Value="250" />
                         <Setter Property="SpinButtonPlacementMode" Value="Inline" />
                         <Setter Property="Minimum" Value="1" />
                     </Style>
-                </StackPanel.Resources>
+                </StackPanel.Styles>
 
-                <ui:NumberBox
+                <winui:NumberBox
                     x:Name="ValueBox"
                     Margin="0,0,40,0"
                     Header="Valor:"
                     Value="{Binding Value}" />
-                <ui:NumberBox Header="Quantidade de parcelas:" Value="{Binding ParcelaCount}" />
+                <winui:NumberBox Header="Quantidade de parcelas:" Value="{Binding ParcelaCount}" />
+
 
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel.Styles>
+                    <Style Selector="winui|SymbolIcon">
+                        <Setter Property="FontSize" Value="24" />
+                    </Style>
+                    <Style Selector="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </StackPanel.Styles>
                 <Button
                     Margin="0,0,10,0"
-                    Background="{StaticResource SystemControlForegroundAccentBrush}"
+                    Background="{DynamicResource SystemAccentColor}"
                     Command="{Binding CalculateCommand}">
                     <StackPanel Orientation="Horizontal">
-                        <ui:SymbolIcon Margin="0,0,5,0" Symbol="Calculator" />
+                        <winui:SymbolIcon Margin="0,0,5,0" Symbol="Calculator" />
                         <TextBlock>Calcular</TextBlock>
                     </StackPanel>
                 </Button>
@@ -70,7 +68,7 @@
                     Background="DarkRed"
                     Command="{Binding EraseCommand}">
                     <StackPanel Orientation="Horizontal">
-                        <ui:SymbolIcon Margin="0,0,5,0" Symbol="Delete" />
+                        <winui:SymbolIcon Margin="0,0,5,0" Symbol="Delete" />
                         <TextBlock>Apagar</TextBlock>
                     </StackPanel>
 
@@ -84,4 +82,6 @@
             FontSize="50"
             Text="{Binding Result}" />
     </Grid>
-</Window>
+
+
+</UserControl>

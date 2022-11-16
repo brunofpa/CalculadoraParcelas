@@ -7,8 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="using:CalculadoraParcelas.Windows.Core.ViewModels"
     xmlns:winuiex="using:WinUIEx"
-    Backdrop="Mica"
     mc:Ignorable="d">
+    <winuiex:WindowEx.Backdrop>
+        <winuiex:MicaSystemBackdrop DarkTintOpacity="0.8" />
+    </winuiex:WindowEx.Backdrop>
 
     <Grid>
         <Grid.DataContext>
