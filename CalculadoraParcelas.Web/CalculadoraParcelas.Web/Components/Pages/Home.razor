@@ -1,0 +1,35 @@
+﻿@page "/"
+@using CalculadoraParcelas.Windows.Core.ViewModels
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<PageTitle>Calculadora de Parcelas</PageTitle>
+<FluentGrid style="padding:50px; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center">
+
+    <h1 style="text-align:center; margin-bottom:30px">Calculadora de Parcelas</h1>
+
+    <FluentStack Orientation="Orientation.Vertical" VerticalGap="20">
+
+        <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
+            <FluentNumberField @bind-Value="Vm.Value" Min="0">Valor:</FluentNumberField>
+            <FluentNumberField @bind-Value="Vm.ParcelaCount" Min="0">Quantidade de parcelas:</FluentNumberField>
+        </FluentStack>
+
+        <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
+            <FluentButton @onclick="@(() => Vm.CalculateCommand.Execute(true))">Calcular</FluentButton>
+            <FluentButton @onclick="@(() => Vm.EraseCommand.Execute(true))">Apagar</FluentButton>
+        </FluentStack>
+
+    </FluentStack>
+    <h1 style="text-align:center; margin-top:80px">@Vm?.Result</h1>
+</FluentGrid>
+
+@code {
+    private CalculatorViewModel Vm = new CalculatorViewModel();
+
+    protected override void OnInitialized()
+    {
+        Vm.PropertyChanged += (s, e) => StateHasChanged();
+    }
+}
