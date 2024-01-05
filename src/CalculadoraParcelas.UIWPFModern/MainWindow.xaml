@@ -1,0 +1,76 @@
+﻿<Window
+    x:Class="CalculadoraParcelas.UIWPFModern.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CalculadoraParcelas.UIWPFModern"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    xmlns:viewmodels="clr-namespace:CalculadoraParcelas.Windows.Core.ViewModels;assembly=CalculadoraParcelas.Core"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    ui:ThemeManager.IsThemeAware="True"
+    ui:TitleBar.ExtendViewIntoTitleBar="True"
+    ui:WindowHelper.SystemBackdropType="Mica"
+    ui:WindowHelper.UseModernWindowStyle="True"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <viewmodels:CalculatorViewModel x:Name="Vm" />
+    </Window.DataContext>
+    <Grid Margin="50">
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontSize="36">
+            Calculadora de Parcelas
+        </TextBlock>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Margin="0,40" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="ui:NumberBox">
+                        <Setter Property="Width" Value="250" />
+                        <Setter Property="SpinButtonPlacementMode" Value="Inline" />
+                        <Setter Property="Minimum" Value="1" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <ui:NumberBox
+                    x:Name="ValueBox"
+                    Margin="0,0,40,0"
+                    Header="Valor:"
+                    Value="{Binding Value}" />
+                <ui:NumberBox Header="Quantidade de parcelas:" Value="{Binding ParcelaCount}" />
+
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button
+                    Margin="0,0,10,0"
+                    Background="{StaticResource SystemControlForegroundAccentBrush}"
+                    Command="{Binding CalculateCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Margin="0,0,5,0" Symbol="Calculator" />
+                        <TextBlock>Calcular</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                    x:Name="button"
+                    Background="DarkRed"
+                    Command="{Binding EraseCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Margin="0,0,5,0" Symbol="Delete" />
+                        <TextBlock>Apagar</TextBlock>
+                    </StackPanel>
+
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock
+            Margin="50"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            FontSize="50"
+            Text="{Binding Result}" />
+    </Grid>
+</Window>

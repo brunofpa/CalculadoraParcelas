@@ -1,0 +1,16 @@
+﻿<Application
+    x:Class="CalculadoraParcelas.UIWPFModern.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:CalculadoraParcelas.UIWPFModern"
+    xmlns:winui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <winui:ThemeResources />
+                <winui:XamlControlsResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
